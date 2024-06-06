@@ -45,8 +45,8 @@ function updateMonthRange() {
 
 // Initialize dropdowns and set initial image
 populateDropdowns();
-yearSelect.value = 2023; // Set default year
-monthSelect.value = 1;   // Set default month
+yearSelect.value = 2024; // Set default year
+monthSelect.value = 4;   // Set default month
 updateImage();
 
 // Sync slider with dropdown
