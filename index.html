@@ -18,6 +18,16 @@
             width: 100%;
             height: auto;
         }
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 5px;
+            background: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            pointer-events: none;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -33,8 +43,10 @@
         </select>
     </div>
     <div id="map-container">
-        <img id="map" src="" alt="Subway Map">
+        <img id="map" src="2307.png" alt="Subway Map">
+        <div id="tooltip" class="tooltip"></div>
     </div>
+    <script src="stations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
