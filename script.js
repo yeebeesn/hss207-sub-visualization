@@ -3,24 +3,37 @@ const monthSelect = document.getElementById('monthSelect');
 const monthRange = document.getElementById('monthRange');
 const imageElement = document.getElementById('subwayImage');
 
-// Populate year and month dropdowns
-function populateDropdowns() {
-    for (let year = 2012; year <= 2024; year++) {
-        if (year === 2017) {
-            continue;
-        }
+// Populate year dropdown
+function populateYears() {
+    const years = [2012, 2013, 2014, 2015, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+    years.forEach(year => {
         let option = document.createElement('option');
         option.value = year;
         option.textContent = year;
         yearSelect.appendChild(option);
-    }
+    });
+}
 
-    for (let month = 1; month <= 12; month++) {
+// Populate month dropdown based on selected year
+function updateMonths() {
+    monthSelect.innerHTML = ''; // Clear previous options
+    const selectedYear = parseInt(yearSelect.value);
+    const maxMonth = (selectedYear === 2024) ? 4 : 12;
+    monthRange.max = maxMonth; // Update range slider max value
+
+    for (let month = 1; month <= maxMonth; month++) {
         let option = document.createElement('option');
         option.value = month;
         option.textContent = month;
         monthSelect.appendChild(option);
     }
+
+    // If currently selected month is greater than the new max month, set it to max month
+    if (monthSelect.value > maxMonth) {
+        monthSelect.value = maxMonth;
+    }
+
+    monthRange.value = monthSelect.value;
 }
 
 // Update image based on selected year and month
@@ -29,12 +42,9 @@ function updateImage() {
     let selectedMonth = monthSelect.value;
 
     // Add leading zero to month if needed
-    
-    selectedMonth = '.' + selectedMonth;
-    
-    
+    selectedMonth = selectedMonth.padStart(2, '0');
 
-    const imageUrl = `${selectedYear}${selectedMonth}.png`;
+    const imageUrl = `${selectedYear}.${selectedMonth}.png`;
     imageElement.src = imageUrl;
     imageElement.alt = `Subway Usage ${selectedYear}-${selectedMonth}`;
 }
@@ -47,9 +57,10 @@ function updateMonthRange() {
 }
 
 // Initialize dropdowns and set initial image
-populateDropdowns();
-yearSelect.value = 2024; // Set default year
-monthSelect.value = 4;   // Set default month
+populateYears();
+yearSelect.value = 2023; // Set default year
+updateMonths();
+monthSelect.value = 1;   // Set default month
 updateImage();
 
 // Sync slider with dropdown
