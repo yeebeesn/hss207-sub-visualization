@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let month = 1; month <= 12; month++) {
         const option = document.createElement('option');
-        option.value = month.toString().padStart(2, '0');
+        option.value = month.toString();
         option.textContent = month;
         monthSelect.appendChild(option);
     }
