@@ -3,38 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Subway Map</title>
+    <title>Subway Usage Visualization</title>
     <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-        #map-container {
-            width: 80%;
-            max-width: 1000px;
-            margin: auto;
-        }
-        #map {
-            width: 100%;
-            height: auto;
+        body { text-align: center; font-family: Arial, sans-serif; }
+        img { width: 80%; max-width: 1000px; }
+        .controls { margin: 20px; }
+        .controls select, .controls input[type=range] {
+            margin: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Interactive Subway Map</h1>
-    <div id="controls">
-        <label for="year">Year:</label>
-        <select id="year">
-            <!-- 연도 선택 옵션 추가 -->
+    <h1>Subway Usage Visualization</h1>
+    <div class="controls">
+        <label for="yearSelect">Year:</label>
+        <select id="yearSelect" onchange="updateImage()">
+            <!-- Options will be populated by JavaScript -->
         </select>
-        <label for="month">Month:</label>
-        <select id="month">
-            <!-- 월 선택 옵션 추가 -->
+        
+        <label for="monthSelect">Month:</label>
+        <select id="monthSelect" onchange="updateImage()">
+            <!-- Options will be populated by JavaScript -->
         </select>
+        
+        <br>
+        <label for="monthRange">Month Range:</label>
+        <input type="range" id="monthRange" min="1" max="12" value="1" onchange="updateMonthRange()">
     </div>
-    <div id="map-container">
-        <img id="map" src="" alt="Subway Map">
-    </div>
+    <img id="subwayImage" src="201201.png" alt="Subway Usage">
     <script src="script.js"></script>
 </body>
 </html>
