@@ -42,7 +42,7 @@ function updateImage() {
     let selectedMonth = monthSelect.value;
 
     // Add leading zero to month if needed
-    selectedMonth = selectedMonth.padStart(2, '0');
+    selectedMonth = selectedMonth;
 
     const imageUrl = `${selectedYear}.${selectedMonth}.png`;
     imageElement.src = imageUrl;
