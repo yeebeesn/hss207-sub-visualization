@@ -26,9 +26,10 @@ function updateImage() {
     let selectedMonth = monthSelect.value;
 
     // Add leading zero to month if needed
-    if (selectedMonth.length === 1) {
-        selectedMonth = '.' + selectedMonth;
-    }
+    
+    selectedMonth = '.' + selectedMonth;
+    
+    
 
     const imageUrl = `${selectedYear}${selectedMonth}.png`;
     imageElement.src = imageUrl;
