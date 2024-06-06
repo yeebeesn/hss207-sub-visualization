@@ -1,40 +1,39 @@
 // script.js
-document.addEventListener('DOMContentLoaded', () => {
-    const yearSelect = document.getElementById('year');
-    const monthSelect = document.getElementById('month');
-    const mapImage = document.getElementById('map');
-
-    // 연도와 월 옵션을 동적으로 생성
-    for (let year = 2012; year <= 2023; year++) {
-        if (year !== 2017) { // 2017년 제외
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            yearSelect.appendChild(option);
-        }
-    }
-
-    for (let month = 1; month <= 12; month++) {
-        const option = document.createElement('option');
-        option.value = month.toString().padStart(2, '0');
-        option.textContent = month;
-        monthSelect.appendChild(option);
-    }
-
-    // 이미지 업데이트 함수
-    const updateImage = () => {
-        const year = yearSelect.value.slice(2); // '2023' -> '23'
-        const month = monthSelect.value; // '07', '08' 등
-        const imagePath = `${year}${month}.png`;
-        mapImage.src = imagePath;
-    };
-
-    // 이벤트 리스너 추가
-    yearSelect.addEventListener('change', updateImage);
-    monthSelect.addEventListener('change', updateImage);
-
-    // 초기값 설정
-    yearSelect.value = '2023';
-    monthSelect.value = '07';
+document.addEventListener('DOMContentLoaded', (event) => {
+    populateYearSelect();
+    populateMonthSelect();
     updateImage();
 });
+
+function populateYearSelect() {
+    const yearSelect = document.getElementById('yearSelect');
+    for (let year = 2012; year <= 2023; year++) {
+        let option = document.createElement('option');
+        option.value = year;
+        option.text = year;
+        yearSelect.appendChild(option);
+    }
+}
+
+function populateMonthSelect() {
+    const monthSelect = document.getElementById('monthSelect');
+    for (let month = 1; month <= 12; month++) {
+        let option = document.createElement('option');
+        option.value = month.toString().padStart(2, '0');
+        option.text = month;
+        monthSelect.appendChild(option);
+    }
+}
+
+function updateImage() {
+    const year = document.getElementById('yearSelect').value;
+    const month = document.getElementById('monthSelect').value;
+    const img = document.getElementById('subwayImage');
+    img.src = `${year}${month}.png`;
+}
+
+function updateMonthRange() {
+    const range = document.getElementById('monthRange').value;
+    document.getElementById('monthSelect').value = range.toString().padStart(2, '0');
+    updateImage();
+}
