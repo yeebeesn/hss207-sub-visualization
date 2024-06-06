@@ -1,39 +1,56 @@
-// script.js
-document.addEventListener('DOMContentLoaded', (event) => {
-    populateYearSelect();
-    populateMonthSelect();
-    updateImage();
-});
+const yearSelect = document.getElementById('yearSelect');
+const monthSelect = document.getElementById('monthSelect');
+const monthRange = document.getElementById('monthRange');
+const imageElement = document.getElementById('subwayImage');
 
-function populateYearSelect() {
-    const yearSelect = document.getElementById('yearSelect');
+// Populate year and month dropdowns
+function populateDropdowns() {
     for (let year = 2012; year <= 2023; year++) {
         let option = document.createElement('option');
         option.value = year;
-        option.text = year;
+        option.textContent = year;
         yearSelect.appendChild(option);
     }
-}
 
-function populateMonthSelect() {
-    const monthSelect = document.getElementById('monthSelect');
     for (let month = 1; month <= 12; month++) {
         let option = document.createElement('option');
-        option.value = month.toString().padStart(2, '0');
-        option.text = month;
+        option.value = month;
+        option.textContent = month;
         monthSelect.appendChild(option);
     }
 }
 
+// Update image based on selected year and month
 function updateImage() {
-    const year = document.getElementById('yearSelect').value;
-    const month = document.getElementById('monthSelect').value;
-    const img = document.getElementById('subwayImage');
-    img.src = `${year}${month}.png`;
+    const selectedYear = yearSelect.value;
+    let selectedMonth = monthSelect.value;
+
+    // Add leading zero to month if needed
+    if (selectedMonth.length === 1) {
+        selectedMonth = '0' + selectedMonth;
+    }
+
+    const imageUrl = `${selectedYear}${selectedMonth}.png`;
+    imageElement.src = imageUrl;
+    imageElement.alt = `Subway Usage ${selectedYear}-${selectedMonth}`;
 }
 
+// Update month range slider and sync with month dropdown
 function updateMonthRange() {
-    const range = document.getElementById('monthRange').value;
-    document.getElementById('monthSelect').value = range.toString().padStart(2, '0');
+    const selectedMonth = monthRange.value;
+    monthSelect.value = selectedMonth;
     updateImage();
 }
+
+// Initialize dropdowns and set initial image
+populateDropdowns();
+yearSelect.value = 2012; // Set default year
+monthSelect.value = 1;   // Set default month
+updateImage();
+
+// Sync slider with dropdown
+monthRange.addEventListener('input', () => {
+    const selectedMonth = monthRange.value;
+    monthSelect.value = selectedMonth;
+    updateImage();
+});
