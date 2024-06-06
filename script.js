@@ -35,6 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 초기값 설정
     yearSelect.value = '2023';
-    monthSelect.value = '07';
+    monthSelect.value = '12';
     updateImage();
 });
