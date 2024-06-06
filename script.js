@@ -5,7 +5,7 @@ const imageElement = document.getElementById('subwayImage');
 
 // Populate year and month dropdowns
 function populateDropdowns() {
-    for (let year = 2012; year <= 2023; year++) {
+    for (let year = 2012; year <= 2024; year++) {
         let option = document.createElement('option');
         option.value = year;
         option.textContent = year;
