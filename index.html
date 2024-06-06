@@ -3,34 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subway Usage Visualization</title>
+    <title>Interactive Subway Map</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        img { width: 80%; max-width: 1000px; }
-        .controls { margin: 20px; }
-        .controls select, .controls input[type=range] {
-            margin: 10px;
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #map-container {
+            width: 80%;
+            max-width: 1000px;
+            margin: auto;
+        }
+        #map {
+            width: 100%;
+            height: auto;
+        }
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 5px;
+            background: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            pointer-events: none;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>Subway Usage Visualization</h1>
-    <div class="controls">
-        <label for="yearSelect">Year:</label>
-        <select id="yearSelect" onchange="updateImage()">
-            <!-- Options will be populated by JavaScript -->
+    <h1>Interactive Subway Map</h1>
+    <div id="controls">
+        <label for="year">Year:</label>
+        <select id="year">
+            <!-- 연도 선택 옵션 추가 -->
         </select>
-        
-        <label for="monthSelect">Month:</label>
-        <select id="monthSelect" onchange="updateImage()">
-            <!-- Options will be populated by JavaScript -->
+        <label for="month">Month:</label>
+        <select id="month">
+            <!-- 월 선택 옵션 추가 -->
         </select>
-        
-        <br>
-        <label for="monthRange">Month Range:</label>
-        <input type="range" id="monthRange" min="1" max="12" value="1" onchange="updateMonthRange()">
     </div>
-    <img id="subwayImage" src="2023.1.png" alt="Subway Usage">
+    <div id="map-container">
+        <img id="map" src="2307.png" alt="Subway Map">
+        <div id="tooltip" class="tooltip"></div>
+    </div>
+    <script src="stations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
