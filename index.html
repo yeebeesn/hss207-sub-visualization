@@ -6,7 +6,7 @@
     <title>Subway Usage Visualization</title>
     <style>
         body { text-align: center; font-family: Arial, sans-serif; }
-        img { width: 100%; max-width: height: auto; 1000px; }
+        img { width: 80%; max-width: 1000px; }
         .controls { margin: 20px; }
         .controls select, .controls input[type=range] {
             margin: 10px;
@@ -17,7 +17,7 @@
     <h1>Subway Usage Visualization</h1>
     <div class="controls">
         <label for="yearSelect">Year:</label>
-        <select id="yearSelect" onchange="updateImage()">
+        <select id="yearSelect" onchange="updateMonths(); updateImage();">
             <!-- Options will be populated by JavaScript -->
         </select>
         
@@ -30,7 +30,7 @@
         <label for="monthRange">Month Range:</label>
         <input type="range" id="monthRange" min="1" max="12" value="1" onchange="updateMonthRange()">
     </div>
-    <img id="subwayImage" src="201201.png" alt="Subway Usage">
+    <img id="subwayImage" src="2023.01.png" alt="Subway Usage">
     <script src="script.js"></script>
 </body>
 </html>
